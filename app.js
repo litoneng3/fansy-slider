@@ -25,6 +25,7 @@ const showImages = (images) => {
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
   })
+  displaySpinner();
 
 }
 
@@ -37,6 +38,7 @@ document.getElementById('search').
   });
 
 const getImages = (query) => {
+  displaySpinner();
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
@@ -136,5 +138,12 @@ searchBtn.addEventListener('click', function () {
 })
 
 sliderBtn.addEventListener('click', function () {
-  createSlider()
+  createSlider();
 })
+
+const displaySpinner = () => {
+  const spinner = document.getElementById('loading-spinner');
+  const images = document.getElementById('image-container');
+  spinner.classList.toggle('d-none');
+  images.classList.toggle('d-none');
+}
