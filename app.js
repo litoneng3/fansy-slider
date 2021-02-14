@@ -85,7 +85,7 @@ const createSlider = () => {
   if (duration < 0) {
     duration = duration * -1;
   }
-  
+
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -99,7 +99,7 @@ const createSlider = () => {
     slideIndex++;
     changeSlide(slideIndex);
   }, duration);
-  
+
 
 }
 
@@ -133,7 +133,13 @@ searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
-  getImages(search.value)
+  if (search.value == "") {
+    alert("Input field can't be null. Please input something.");
+  }
+  else {
+    getImages(search.value);
+  }
+
   sliders.length = 0;
 })
 
