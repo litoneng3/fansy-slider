@@ -83,7 +83,7 @@ const createSlider = () => {
   imagesArea.style.display = 'none';
   let duration = document.getElementById('duration').value || 1000;
   if (duration < 0) {
-    duration = duration * -1;
+    duration = Math.abs(duration);
   }
 
   sliders.forEach(slide => {
